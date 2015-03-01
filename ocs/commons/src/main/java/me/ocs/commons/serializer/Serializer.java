@@ -1,5 +1,6 @@
 package me.ocs.commons.serializer;
 
+import java.io.Writer;
 import java.lang.reflect.Type;
 
 /**
@@ -12,23 +13,15 @@ import java.lang.reflect.Type;
  */
 public interface Serializer {
 
-	byte[] serialize(Object bean);
+	void serialize(Object bean, Writer writer);
 
-	byte[] serialize(Type type, Object bean);
+	void serialize(Type type, Object bean, Writer writer);
 
-	void serialize(Object bean, Appendable writer);
+	String serialize(Object bean);
 
-	void serialize(Type type, Object bean, Appendable writer);
-
-	String serializeAsString(Object bean);
-
-	String serializeAsString(Type type, Object bean);
-
-	<T> T deserialize(Class<T> clazz, byte[] data);
-
-	Object deserialize(Type type, byte[] data);
+	String serialize(Type type, Object bean);
 
 	<T> T deserialize(Class<T> clazz, String data);
 
-	Object deserialize(Type type, String data);
+	<T> T deserialize(Type type, String data);
 }
