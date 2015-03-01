@@ -19,6 +19,7 @@ public class XStreamSerializer implements Serializer {
 	public XStreamSerializer() {
 		super();
 		xstream = new XStream();
+		xstream.autodetectAnnotations(true);
 	}
 
 	@Override
