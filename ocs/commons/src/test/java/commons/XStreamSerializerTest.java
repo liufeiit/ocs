@@ -31,6 +31,7 @@ public class XStreamSerializerTest {
 		Std std = new Std();
 		std.setName("fei.liu");
 		System.out.println(serializer.serialize(std));
+		System.out.println(serializer.deserialize(Std.class.getGenericSuperclass(), serializer.serialize(std)));
 		System.out.println(((Std)serializer.deserialize(Std.class.getGenericSuperclass(), serializer.serialize(std))).getName());
 	}
 }
