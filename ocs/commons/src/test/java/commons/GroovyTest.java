@@ -27,6 +27,22 @@ import javax.script.ScriptEngineManager;
  * @since 2015年3月10日 下午2:57:19
  */
 public class GroovyTest {
+	
+	public static void main(String[] args) {
+		Binding binding = new Binding();
+		GroovyShell shell = new GroovyShell(binding);
+		binding.setVariable("name", "刘飞");
+		String script = 
+				"import groovy.sql.Sql;"
+				+ "import commons.GroovyString;"
+//				+ "db = Sql.newInstance(url:'jdbc:mysql://172.19.30.102:3306/af_cfc_db?useUnicode=true&amp;characterEncoding=UTF-8', user:'ac', password:'ac123', driverClassName:'com.mysql.jdbc.Driver');"
+//				+ "db.query 'SELECT * FROM CFCMessageAuditRecord ORDER BY gmt_created DESC', {while(it.next()){println it.getString('appName')}};"
+//				+ "db.rows('SELECT * FROM CFCMessageAuditRecord ORDER BY gmt_created DESC').each {row -> println 'row list : ' + row['appName']};"
+//				+ "db.eachRow 'SELECT * FROM CFCMessageAuditRecord ORDER BY gmt_created DESC', {println 'eachRow : ' + it['appName']};"
+//				+ "println 'firstRow : ' + db.firstRow('SELECT * FROM CFCMessageAuditRecord ORDER BY gmt_created DESC');"
+				+ "println new GroovyString().welcome(name)";
+		shell.evaluate(script);
+	}
 
 	public static void evalScriptAsMainMethod() {
 		String[] args = new String[] { "Zhangsan", "10" };// main(String[] args)
@@ -55,7 +71,7 @@ public class GroovyTest {
 		System.out.println(message);
 	}
 
-	public static void main(String[] args) throws Exception {
+	public static void main00(String[] args) throws Exception {
 		Binding binding = new Binding();
 		GroovyShell shell = new GroovyShell(binding);
 		binding.setVariable("name", "zhangsan");
