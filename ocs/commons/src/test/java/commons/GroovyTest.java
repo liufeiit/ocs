@@ -28,19 +28,33 @@ import javax.script.ScriptEngineManager;
  */
 public class GroovyTest {
 	
+	
 	public static void main(String[] args) {
 		Binding binding = new Binding();
 		GroovyShell shell = new GroovyShell(binding);
-		binding.setVariable("name", "刘飞");
+//		binding.setVariable("name", "刘飞");
 		String script = 
 				"import groovy.sql.Sql;"
-				+ "import commons.GroovyString;"
-//				+ "db = Sql.newInstance(url:'jdbc:mysql://172.19.30.102:3306/af_cfc_db?useUnicode=true&amp;characterEncoding=UTF-8', user:'ac', password:'ac123', driverClassName:'com.mysql.jdbc.Driver');"
-//				+ "db.query 'SELECT * FROM CFCMessageAuditRecord ORDER BY gmt_created DESC', {while(it.next()){println it.getString('appName')}};"
-//				+ "db.rows('SELECT * FROM CFCMessageAuditRecord ORDER BY gmt_created DESC').each {row -> println 'row list : ' + row['appName']};"
-//				+ "db.eachRow 'SELECT * FROM CFCMessageAuditRecord ORDER BY gmt_created DESC', {println 'eachRow : ' + it['appName']};"
-//				+ "println 'firstRow : ' + db.firstRow('SELECT * FROM CFCMessageAuditRecord ORDER BY gmt_created DESC');"
-				+ "println new GroovyString().welcome(name)";
+//				+ "import commons.GroovyString;"
+				+ "db = Sql.newInstance(url:'jdbc:mysql://172.19.30.102:3306/af_cfc_db?useUnicode=true&amp;characterEncoding=UTF-8', user:'ac', password:'ac123', driverClassName:'com.mysql.jdbc.Driver');"
+				+ "db.query 'SELECT * FROM CFCMessageAuditRecord ORDER BY gmt_created DESC', {while(it.next()){println it.getString('appName')}};"
+				+ "db.rows('SELECT * FROM CFCMessageAuditRecord ORDER BY gmt_created DESC').each {row -> println 'row list : ' + row['appName']};"
+				+ "db.eachRow 'SELECT * FROM CFCMessageAuditRecord ORDER BY gmt_created DESC', {println 'eachRow : ' + it['appName']};"
+				+ "println 'firstRow : ' + db.firstRow('SELECT * FROM CFCMessageAuditRecord ORDER BY gmt_created DESC');"
+//				+ "println new GroovyString().welcome(name)"
+				;
+		
+		script = "demo = [ "
+				+ "welcome : { Object[] args -> println 'LOG: ' + args[0]; println 'welcome ' + args[0]}, "
+				+ "hello : { Object[] args -> println 'LOG: ' + args[0]; println 'hello ' + args[0]} "
+				+ "].asType(Class.forName('commons.DemoService'));"
+				
+				+ "demo.welcome('刘飞');"
+				+ "demo.hello('刘飞');"
+				
+				;
+		
+		System.out.println(script);
 		shell.evaluate(script);
 	}
 
