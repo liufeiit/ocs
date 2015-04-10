@@ -12,6 +12,7 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
  * @since 2015年3月2日 上午12:37:25
  */
 public class XStreamSerializerTest {
+	
 	@XStreamAlias("Std")
 	public static class Std {
 		@XStreamAlias("NAME")
@@ -31,7 +32,6 @@ public class XStreamSerializerTest {
 		Std std = new Std();
 		std.setName("fei.liu");
 		System.out.println(serializer.serialize(std));
-		System.out.println(serializer.deserialize(Std.class.getGenericSuperclass(), serializer.serialize(std)));
-		System.out.println(((Std)serializer.deserialize(Std.class.getGenericSuperclass(), serializer.serialize(std))).getName());
+		System.out.println(serializer.deserialize(Std.class, serializer.serialize(std)).name);
 	}
 }

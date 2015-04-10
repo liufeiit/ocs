@@ -22,6 +22,4 @@ public interface Serializer {
 	String serialize(Type type, Object bean);
 
 	<T> T deserialize(Class<T> clazz, String data);
-
-	<T> T deserialize(Type type, String data);
 }

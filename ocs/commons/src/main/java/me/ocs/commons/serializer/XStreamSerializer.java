@@ -17,9 +17,13 @@ public class XStreamSerializer implements Serializer {
 	private final XStream xstream;
 
 	public XStreamSerializer() {
+		this(true);
+	}
+
+	public XStreamSerializer(boolean autodetectAnnotations) {
 		super();
 		xstream = new XStream();
-		xstream.autodetectAnnotations(true);
+		xstream.autodetectAnnotations(autodetectAnnotations);
 	}
 
 	@Override
@@ -45,10 +49,5 @@ public class XStreamSerializer implements Serializer {
 	@Override
 	public <T> T deserialize(Class<T> clazz, String data) {
 		return clazz.cast(xstream.fromXML(data));
-	}
-
-	@Override
-	public <T> T deserialize(Type type, String data) {
-		return (T) xstream.fromXML(data);
 	}
 }

@@ -83,9 +83,4 @@ public class GsonSerializer implements Serializer {
 	public <T> T deserialize(Class<T> clazz, String data) {
 		return gson.fromJson(data, clazz);
 	}
-
-	@Override
-	public <T> T deserialize(Type type, String data) {
-		return gson.fromJson(data, type);
-	}
 }
