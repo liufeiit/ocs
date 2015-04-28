@@ -18,7 +18,7 @@ import com.google.gson.reflect.TypeToken;
  */
 public class JSONResponseBody {
 	
-	private final static Serializer Serializer = new GsonSerializer();
+	private final static Serializer SERIALIZER = new GsonSerializer();
 
 	private long code;
 	private String message;
@@ -41,7 +41,7 @@ public class JSONResponseBody {
 	}
 
 	public String toJson() {
-		return Serializer.serialize(new TypeToken<JSONResponseBody>(){}.getType(), this);
+		return SERIALIZER.serialize(new TypeToken<JSONResponseBody>(){}.getType(), this);
 	}
 
 	@Override

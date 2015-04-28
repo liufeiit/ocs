@@ -16,103 +16,56 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 /**
- * @author 刘飞 E-mail:liufei_it@126.com
+ * @author 刘飞
+ * 
  * @version 1.0.0
- * @since 2015年3月30日 下午10:25:04
+ * @since 2015年4月28日 下午6:46:01
  */
 public class AsciiImgCache implements Iterable<Entry<Character, int[]>> {
 
-	/** A map of characters to their bitmaps. */
 	private final Map<Character, int[]> imageCache;
 
-	/** Minimum value of ASCII char to take into consideration. */
 	private static final int MIN_CHAR = 65;
 
-	/** Minimum value of ASCII char to take into consideration. */
 	private static final int MAX_CHAR = 126;
 
-	/**
-	 * @return the characterImageSize
-	 */
 	public Dimension getCharacterImageSize() {
 		return characterImageSize;
 	}
 
 	private final Dimension characterImageSize;
 
-	/**
-	 * Instantiates a new ascii img cache.
-	 * 
-	 * @param characterImageSize
-	 *            the character image size
-	 * @param imageCache
-	 *            the image cache
-	 */
 	private AsciiImgCache(final Dimension characterImageSize, final Map<Character, int[]> imageCache) {
 		this.characterImageSize = characterImageSize;
 		this.imageCache = imageCache;
 	}
 
-	/**
-	 * Initialize a new character cache with supplied font.
-	 * 
-	 * @param font
-	 *            the font
-	 * @return the ascii img cache
-	 */
 	public static AsciiImgCache create(final Font font) {
-
 		Dimension maxCharacterImageSize = calculateCharacterRectangle(font);
 		Map<Character, int[]> imageCache = createCharacterImages(font, maxCharacterImageSize);
-
 		return new AsciiImgCache(maxCharacterImageSize, imageCache);
-
 	}
 
-	/**
-	 * Creates the character images.
-	 * 
-	 * @param font
-	 *            the font
-	 * @param characterSize
-	 *            the character size
-	 * @return the map
-	 */
 	private static Map<Character, int[]> createCharacterImages(final Font font, final Dimension characterSize) {
-		// create each image
 		BufferedImage img = new BufferedImage(characterSize.width, characterSize.height, BufferedImage.TYPE_INT_ARGB);
 		Graphics g = img.getGraphics();
 		Graphics2D graphics = (Graphics2D) g;
 		graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 		graphics.setFont(font);
 		FontMetrics fm = graphics.getFontMetrics();
-
 		Map<Character, int[]> imageCache = new HashMap<Character, int[]>();
-
 		for (int i = MIN_CHAR; i <= MAX_CHAR; i++) {
 			String character = Character.toString((char) i);
-
 			g.setColor(Color.WHITE);
 			g.fillRect(0, 0, characterSize.width, characterSize.height);
 			g.setColor(Color.BLACK);
-
 			Rectangle rect = new TextLayout(Character.toString((char) i), fm.getFont(), fm.getFontRenderContext()).getOutline(null).getBounds();
-
 			g.drawString(character, 0, (int) (rect.getHeight() - rect.getMaxY()));
-
 			imageCache.put((char) i, img.getRGB(0, 0, characterSize.width, characterSize.height, null, 0, characterSize.width));
 		}
-
 		return imageCache;
 	}
 
-	/**
-	 * Calculate character rectangle for the given font metrics.
-	 * 
-	 * @param fontMetrics
-	 *            the font metrics
-	 * @return the rectangle
-	 */
 	private static Dimension calculateCharacterRectangle(final Font font) {
 		BufferedImage img = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
 		Graphics g = img.getGraphics();
@@ -120,20 +73,16 @@ public class AsciiImgCache implements Iterable<Entry<Character, int[]>> {
 		graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 		graphics.setFont(font);
 		FontMetrics fm = graphics.getFontMetrics();
-
 		Dimension maxCharacter = new Dimension();
 		for (int i = MIN_CHAR; i <= MAX_CHAR; i++) {
 			Rectangle characterRectangle = new TextLayout(Character.toString((char) i), fm.getFont(), fm.getFontRenderContext()).getOutline(null).getBounds();
-
 			if (maxCharacter.width < characterRectangle.getWidth()) {
 				maxCharacter.width = (int) characterRectangle.getWidth();
 			}
-
 			if (maxCharacter.height < characterRectangle.getHeight()) {
 				maxCharacter.height = (int) characterRectangle.getHeight();
 			}
 		}
-
 		return maxCharacter;
 	}
 
@@ -141,5 +90,4 @@ public class AsciiImgCache implements Iterable<Entry<Character, int[]>> {
 	public Iterator<Entry<Character, int[]>> iterator() {
 		return imageCache.entrySet().iterator();
 	}
-
 }
