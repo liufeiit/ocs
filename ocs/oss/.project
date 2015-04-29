@@ -2,7 +2,10 @@
 <projectDescription>
   <name>ocs-oss</name>
   <comment>Open Commons Service - Open Storage Service. NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
-  <projects/>
+  <projects>
+    <project>ocs-commons</project>
+    <project>ocs-oauth</project>
+  </projects>
   <buildSpec>
     <buildCommand>
       <name>org.eclipse.jdt.core.javabuilder</name>
