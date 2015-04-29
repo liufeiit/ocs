@@ -38,7 +38,7 @@ public class RedisAuthenticationProvider implements AuthenticationProvider {
 	private SecurityService securityService;
 	
 	private int tokenExpiresInSec = DEFAULT_TOKEN_EXPIRES_IN_SEC;
-
+	
 	@Override
 	public LoginResponse doLogin(LoginRequest request) {
 		final String appId = request.getApp_id();
