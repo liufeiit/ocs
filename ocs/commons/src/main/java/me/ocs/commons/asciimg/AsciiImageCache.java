@@ -21,7 +21,7 @@ import java.util.Map.Entry;
  * @version 1.0.0
  * @since 2015年4月28日 下午6:46:01
  */
-public class AsciiImgCache implements Iterable<Entry<Character, int[]>> {
+public class AsciiImageCache implements Iterable<Entry<Character, int[]>> {
 
 	private final Map<Character, int[]> imageCache;
 
@@ -35,15 +35,15 @@ public class AsciiImgCache implements Iterable<Entry<Character, int[]>> {
 
 	private final Dimension characterImageSize;
 
-	private AsciiImgCache(final Dimension characterImageSize, final Map<Character, int[]> imageCache) {
+	private AsciiImageCache(final Dimension characterImageSize, final Map<Character, int[]> imageCache) {
 		this.characterImageSize = characterImageSize;
 		this.imageCache = imageCache;
 	}
 
-	public static AsciiImgCache create(final Font font) {
+	public static AsciiImageCache create(final Font font) {
 		Dimension maxCharacterImageSize = calculateCharacterRectangle(font);
 		Map<Character, int[]> imageCache = createCharacterImages(font, maxCharacterImageSize);
-		return new AsciiImgCache(maxCharacterImageSize, imageCache);
+		return new AsciiImageCache(maxCharacterImageSize, imageCache);
 	}
 
 	private static Map<Character, int[]> createCharacterImages(final Font font, final Dimension characterSize) {

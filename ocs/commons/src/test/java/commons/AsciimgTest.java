@@ -8,7 +8,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import me.ocs.commons.asciimg.AsciiImageConverter;
-import me.ocs.commons.asciimg.AsciiImgCache;
+import me.ocs.commons.asciimg.AsciiImageCache;
 
 /**
  * 
@@ -23,7 +23,7 @@ public class AsciimgTest {
 		BufferedImage input = ImageIO.read(inputFile);
 		Font font = new Font("Courier", Font.PLAIN,6);
 
-		AsciiImgCache cache = AsciiImgCache.create(font);
+		AsciiImageCache cache = AsciiImageCache.create(font);
 		AsciiImageConverter imgConverter = new AsciiImageConverter(cache);
 		BufferedImage output = imgConverter.convertImage(input);
 		File outputfile = new File("F://dev/DSCF8855.png");

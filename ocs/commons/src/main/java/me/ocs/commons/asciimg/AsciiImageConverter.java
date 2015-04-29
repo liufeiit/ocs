@@ -12,11 +12,11 @@ import java.util.Map.Entry;
  */
 public class AsciiImageConverter {
 
-	private final AsciiImgCache characterCache;
+	private final AsciiImageCache characterCache;
 
 	private static final int THRESHOLD = 175;
 
-	public AsciiImageConverter(final AsciiImgCache characterCacher) {
+	public AsciiImageConverter(final AsciiImageCache characterCacher) {
 		this.characterCache = characterCacher;
 	}
 
