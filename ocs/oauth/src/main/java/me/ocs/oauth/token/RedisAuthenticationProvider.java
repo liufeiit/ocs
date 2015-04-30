@@ -46,7 +46,7 @@ public class RedisAuthenticationProvider implements AuthenticationProvider {
 		final String open_id = redisTemplate.execute(new RedisCallback<String>() {
 			@Override
 			public String doInRedis(Jedis jedis) throws Throwable {
-				String openId = sequenceService.nextValueAsString(REDIS_AUTHENTICATION_SEQUENCETYPE, 25);
+				String openId = sequenceService.nextValueAsStringWithCreate(REDIS_AUTHENTICATION_SEQUENCETYPE, 25, 1L);
 				jedis.hset(appId, openId, secretId);
 				return openId;
 			}
