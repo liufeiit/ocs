@@ -5,31 +5,22 @@ import java.io.FileNotFoundException;
 import java.util.Date;
 import java.util.Map;
 import java.util.Map.Entry;
+
+import com.notnoop.apns.ReconnectPolicy.Provided;
+import com.notnoop.apns.internal.ReconnectPolicies;
 import com.notnoop.exceptions.InvalidSSLConfig;
 
 public class MainClass {
 
-    /**
-     * @param args Program arguments
-     * @throws FileNotFoundException
-     * @throws InvalidSSLConfig
-     */
     public static void main(final String[] args) throws InvalidSSLConfig, FileNotFoundException {
-        if (args.length != 4) {
-            System.err.println("Usage: test <p|s> <cert> <cert-password>\ntest p ./cert abc123 token");
-            System.exit(777);
-        }
-
         final ApnsDelegate delegate = new ApnsDelegate() {
             public void messageSent(final ApnsNotification message, final boolean resent) {
                 System.out.println("Sent message " + message + " Resent: " + resent);
             }
-
             public void messageSendFailed(final ApnsNotification message, final Throwable e) {
                 System.out.println("Failed message " + message);
 
             }
-
             public void connectionClosed(final DeliveryError e, final int messageIdentifier) {
                 System.out.println("Closed connection: " + messageIdentifier + "\n   deliveryError " + e.toString());
             }
@@ -43,20 +34,35 @@ public class MainClass {
                 System.out.println("notificationResent " + resendCount);
             }
         };
+        boolean production = true;
+        String certificate = "";
+        String password = "";
 
+        final String token = "";
+        
+        String body = "大飞哥儿:\"你好啊!!\"";
+        
+        String key = "";
+        String val = "";
+        
         final ApnsService svc = APNS.newService()
-                .withAppleDestination(args[0].equals("p"))
-                .withCert(new FileInputStream(args[1]), args[2])
+                .withAppleDestination(production)
+                .withAutoAdjustCacheLength(true)
+                .withReadTimeout(10000)
+                .withReconnectPolicy(Provided.EVERY_HALF_HOUR)
+                .withCert(certificate, password)
                 .withDelegate(delegate)
                 .build();
 
-        final String goodToken = args[3];
-
-        final String payload = APNS.newPayload().alertBody("Wrzlmbrmpf dummy alert").build();
+        final String payload = APNS.newPayload()
+        		.alertBody(body)
+        		.customField(key, val)
+        		.build();
 
         svc.start();
+        
         System.out.println("Sending message");
-        final ApnsNotification goodMsg = svc.push(goodToken, payload);
+        final ApnsNotification goodMsg = svc.push(token, payload);
         System.out.println("Message id: " + goodMsg.getIdentifier());
 
         System.out.println("Getting inactive devices");

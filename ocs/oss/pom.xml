@@ -15,6 +15,11 @@
 	</properties>
 	<dependencies>
 		<dependency>
+			<groupId>me.ocs.apns</groupId>
+			<artifactId>ocs-apns</artifactId>
+			<version>1.0.0.Beta7-SNAPSHOT</version>
+		</dependency>
+		<dependency>
 			<groupId>me.ocs.commons</groupId>
 			<artifactId>ocs-commons</artifactId>
 			<version>1.0.0-RELEASE</version>
