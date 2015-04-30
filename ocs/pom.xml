@@ -30,6 +30,7 @@
 		<module>commons</module>
 		<module>oss</module>
 		<module>oauth</module>
+		<module>apns</module>
 	</modules>
 
 	<dependencies>
