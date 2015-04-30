@@ -1,5 +1,6 @@
 package me.ocs.commons.result;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,7 +12,9 @@ import java.util.Map;
  * @version 1.0.0
  * @since 2015年2月28日 下午5:45:20
  */
-public class Result {
+public class Result implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private boolean success;
 	
@@ -38,6 +41,11 @@ public class Result {
 	
 	public static Result newSuccess() {
 		return new Result(true);
+	}
+	
+	public <T> Result callback(ResultCallback callback) {
+		callback.doInResult(this);
+		return this;
 	}
 	
 	public Result response(Object response) {
