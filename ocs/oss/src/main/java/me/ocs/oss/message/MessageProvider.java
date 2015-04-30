@@ -8,7 +8,7 @@ package me.ocs.oss.message;
  * @version 1.0.0
  * @since 2015年4月30日 下午4:54:41
  */
-public interface MessageProvider {
+public interface MessageProvider<M extends Message> {
 	
 	/**
 	 * 供应商名称
@@ -18,5 +18,5 @@ public interface MessageProvider {
 	/**
 	 * 消息消费
 	 */
-	void consume(Message message, MessageNotification notification) throws Exception;
+	void consume(M message, MessageNotification notification) throws Exception;
 }

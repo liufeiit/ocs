@@ -6,7 +6,6 @@ import java.util.List;
 import javax.mail.internet.MimeMessage;
 
 import me.ocs.oauth.security.SecurityService;
-import me.ocs.oss.message.Message;
 import me.ocs.oss.message.MessageNotification;
 import me.ocs.oss.message.MessageProvider;
 import me.ocs.oss.message.msg.MailMessage;
@@ -24,7 +23,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
  * @version 1.0.0
  * @since 2015年4月30日 下午6:07:28
  */
-public class MailMessageProvider extends JavaMailSenderImpl implements MessageProvider, InitializingBean {
+public class MailMessageProvider extends JavaMailSenderImpl implements MessageProvider<MailMessage>, InitializingBean {
 
 	private SecurityService securityService;
 
@@ -38,13 +37,7 @@ public class MailMessageProvider extends JavaMailSenderImpl implements MessagePr
 	}
 
 	@Override
-	public void consume(Message msg, MessageNotification notification) throws Exception {
-		MailMessage mailMessage = null;
-		if (!(msg instanceof MailMessage)) {
-			notification.setFailureMessage("消息类型不正确");
-			return;
-		}
-		mailMessage = MailMessage.class.cast(msg);
+	public void consume(MailMessage mailMessage, MessageNotification notification) throws Exception {
 		if (StringUtils.isBlank(mailMessage.getTarget())) {
 			notification.setFailureMessage("没有指定消息到达目标对象");
 			return;
