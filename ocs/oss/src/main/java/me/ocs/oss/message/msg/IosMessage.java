@@ -18,7 +18,7 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class IosMessage extends Message {
 	
-	public static final String IOS_MESSAGE_PROVIDER_NAME = "IOS";
+	public static final String MESSAGE_PROVIDER_NAME = "IOS";
 
 	/**
 	 * 消息执行的动作
@@ -59,7 +59,7 @@ public class IosMessage extends Message {
 	private Map<String, Object> customField;
 	
 	public IosMessage() {
-		super(IOS_MESSAGE_PROVIDER_NAME);
+		super(MESSAGE_PROVIDER_NAME);
 		customField = new HashMap<String, Object>();
 	}
 	

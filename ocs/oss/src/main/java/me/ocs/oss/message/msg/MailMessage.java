@@ -15,14 +15,18 @@ import me.ocs.oss.message.Message;
  */
 public class MailMessage extends Message {
 
-	public static final String MAIL_MESSAGE_PROVIDER_NAME = "EMAIL";
+	public static final String MESSAGE_PROVIDER_NAME = "EMAIL";
 	
-	private final List<String> attachments = new ArrayList<String>();
+	private final List<String> attachments;
 
-	private final List<String> inlines = new ArrayList<String>();
+	private final List<String> inlines;
+	
+	private boolean html = true;
 	
 	public MailMessage() {
-		super(MAIL_MESSAGE_PROVIDER_NAME);
+		super(MESSAGE_PROVIDER_NAME);
+		attachments = new ArrayList<String>();
+		inlines = new ArrayList<String>();
 	}
 	
 	public MailMessage addAttachment(String attachment) {
@@ -41,5 +45,13 @@ public class MailMessage extends Message {
 
 	public List<String> getInlines() {
 		return inlines;
+	}
+
+	public boolean isHtml() {
+		return html;
+	}
+
+	public void setHtml(boolean html) {
+		this.html = html;
 	}
 }

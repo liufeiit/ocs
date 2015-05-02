@@ -1,5 +1,7 @@
 package me.ocs.oss.message;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * 消息.
  * 
@@ -8,28 +10,30 @@ package me.ocs.oss.message;
  * @version 1.0.0
  * @since 2015年4月30日 下午4:56:15
  */
-public class Message {
+public abstract class Message {
+
+	public static final String TARGET_SPLIT = ",";
 
 	/**
 	 * 消息供应商头信息
 	 */
 	private final String provider;
-	
+
 	/**
 	 * 消息达到目的地
 	 */
 	private String target;
-	
+
 	/**
 	 * 消息标题
 	 */
 	private String title;
-	
+
 	/**
 	 * 消息体
 	 */
 	private String body;
-	
+
 	public Message(String provider) {
 		super();
 		this.provider = provider;
@@ -37,6 +41,13 @@ public class Message {
 
 	public String getProviderName() {
 		return provider;
+	}
+
+	public String[] getMultiTarget() {
+		if (StringUtils.isBlank(target)) {
+			return null;
+		}
+		return StringUtils.split(target, TARGET_SPLIT);
 	}
 
 	public String getTarget() {

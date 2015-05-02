@@ -10,21 +10,26 @@ import me.ocs.oss.message.MessageNotification;
 import me.ocs.oss.message.MessageProvider;
 import me.ocs.oss.message.msg.MailMessage;
 
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 
 /**
- * 
- * @author 刘飞
+ * @author 刘飞 E-mail:liufei_it@126.com
  * 
  * @version 1.0.0
- * @since 2015年4月30日 下午6:07:28
+ * @since 2015年4月30日 下午11:39:39
  */
 public class MailMessageProvider extends JavaMailSenderImpl implements MessageProvider<MailMessage>, InitializingBean {
 
+	private final Log log = LogFactory.getLog(getClass());
+	
 	private SecurityService securityService;
 
 	private String secretUsername;
@@ -33,28 +38,24 @@ public class MailMessageProvider extends JavaMailSenderImpl implements MessagePr
 
 	@Override
 	public String getName() {
-		return MailMessage.MAIL_MESSAGE_PROVIDER_NAME;
+		return MailMessage.MESSAGE_PROVIDER_NAME;
 	}
 
 	@Override
 	public void consume(MailMessage mailMessage, MessageNotification notification) throws Exception {
-		if (StringUtils.isBlank(mailMessage.getTarget())) {
-			notification.setFailureMessage("没有指定消息到达目标对象");
-			return;
-		}
-		String[] to = StringUtils.split(mailMessage.getTarget(), ",");
-		if (to == null || to.length <= 0) {
-			notification.setFailureMessage("没有指定消息到达目标对象");
+		String[] mailTo = mailMessage.getMultiTarget();
+		if (StringUtils.isBlank(mailMessage.getTarget()) || ArrayUtils.isEmpty(mailTo)) {
+			notification.setFailureMessage("未指定消息到达目的地");
 			return;
 		}
 		MimeMessage message = createMimeMessage();
 		MimeMessageHelper helper = new MimeMessageHelper(message, true);
 		helper.setFrom(getUsername());
-		helper.setTo(to);
+		helper.setTo(mailTo);
 		helper.setSubject(mailMessage.getTitle());
-		helper.setText(mailMessage.getBody(), true);
+		helper.setText(mailMessage.getBody(), mailMessage.isHtml());
 		List<String> attachments = mailMessage.getAttachments();
-		if (attachments != null && !attachments.isEmpty()) {
+		if (CollectionUtils.isNotEmpty(attachments)) {
 			for (String attachment : attachments) {
 				File attachFile = new File(attachment);
 				FileSystemResource resource = new FileSystemResource(attachFile);
@@ -62,7 +63,7 @@ public class MailMessageProvider extends JavaMailSenderImpl implements MessagePr
 			}
 		}
 		List<String> inlines = mailMessage.getInlines();
-		if (inlines != null && !inlines.isEmpty()) {
+		if (CollectionUtils.isNotEmpty(inlines)) {
 			for (String inline : inlines) {
 				File inlineFile = new File(inline);
 				FileSystemResource resource = new FileSystemResource(inlineFile);
@@ -72,6 +73,7 @@ public class MailMessageProvider extends JavaMailSenderImpl implements MessagePr
 		send(message);
 		notification.setSuccess(true);
 		notification.setIdentifier(message.getMessageID());
+		log.debug("Send Mail " + message.getMessageID() + " Success!!!");
 		return;
 	}
 
@@ -79,6 +81,7 @@ public class MailMessageProvider extends JavaMailSenderImpl implements MessagePr
 	public void afterPropertiesSet() throws Exception {
 		super.setUsername(securityService.decrypt(secretUsername));
 		super.setPassword(securityService.decrypt(secretPassword));
+		log.debug("Decrypt Mail Config Success!!!");
 	}
 
 	public void setSecurityService(SecurityService securityService) {

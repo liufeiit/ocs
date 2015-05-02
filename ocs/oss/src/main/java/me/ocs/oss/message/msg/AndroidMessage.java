@@ -12,9 +12,9 @@ import me.ocs.oss.message.Message;
  */
 public class AndroidMessage extends Message {
 	
-	public static final String ANDROID_MESSAGE_PROVIDER_NAME = "ANDROID";
+	public static final String MESSAGE_PROVIDER_NAME = "ANDROID";
 
 	public AndroidMessage() {
-		super(ANDROID_MESSAGE_PROVIDER_NAME);
+		super(MESSAGE_PROVIDER_NAME);
 	}
 }
