@@ -36,7 +36,9 @@ public abstract class DefaultGenericDAO<T, PK extends Serializable> extends Enti
 	public T queryNativeForObject(String sql, Object[] args) {
 		try {
 			return (T) createNativeQuery(sql, getEntityType(), args).getSingleResult();
-		} catch (javax.persistence.NoResultException ingore) {}
+		} catch (javax.persistence.NoResultException ingore) {
+			log.error("NoResult SQL : " + sql);
+		}
 		return null;
 	}
 
@@ -44,7 +46,9 @@ public abstract class DefaultGenericDAO<T, PK extends Serializable> extends Enti
 	public T queryNativeForObject(String sql, Map<String, Object> args) {
 		try {
 			return (T) createNativeQuery(sql, getEntityType(), args).getSingleResult();
-		} catch (javax.persistence.NoResultException ingore) {}
+		} catch (javax.persistence.NoResultException ingore) {
+			log.error("NoResult SQL : " + sql);
+		}
 		return null;
 	}
 
@@ -72,7 +76,9 @@ public abstract class DefaultGenericDAO<T, PK extends Serializable> extends Enti
 	public T queryForObject(String hql, Object[] args) {
 		try {
 			return createQuery(hql, getEntityType(), args).getSingleResult();
-		} catch (javax.persistence.NoResultException ingore) {}
+		} catch (javax.persistence.NoResultException ingore) {
+			log.error("NoResult HQL : " + hql);
+		}
 		return null;
 	}
 
@@ -80,7 +86,9 @@ public abstract class DefaultGenericDAO<T, PK extends Serializable> extends Enti
 	public T queryForObject(String hql, Map<String, Object> args) {
 		try {
 			return createQuery(hql, getEntityType(), args).getSingleResult();
-		} catch (javax.persistence.NoResultException ingore) {}
+		} catch (javax.persistence.NoResultException ingore) {
+			log.error("NoResult HQL : " + hql);
+		}
 		return null;
 	}
 
@@ -103,7 +111,9 @@ public abstract class DefaultGenericDAO<T, PK extends Serializable> extends Enti
 	public T queryNamedForObject(String queryName, Map<String, Object> args) {
 		try {
 			return createNamedQuery(queryName, getEntityType(), args).getSingleResult();
-		} catch (javax.persistence.NoResultException ingore) {}
+		} catch (javax.persistence.NoResultException ingore) {
+			log.error("NoResult QueryName : " + queryName);
+		}
 		return null;
 	}
 
@@ -111,7 +121,9 @@ public abstract class DefaultGenericDAO<T, PK extends Serializable> extends Enti
 	public T queryNamedForObject(String queryName, Object[] args) {
 		try {
 			return createNamedQuery(queryName, getEntityType(), args).getSingleResult();
-		} catch (javax.persistence.NoResultException ingore) {}
+		} catch (javax.persistence.NoResultException ingore) {
+			log.error("NoResult QueryName : " + queryName);
+		}
 		return null;
 	}
 
