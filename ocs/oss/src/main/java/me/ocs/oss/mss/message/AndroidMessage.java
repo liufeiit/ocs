@@ -1,6 +1,6 @@
-package me.ocs.oss.message.msg;
+package me.ocs.oss.mss.message;
 
-import me.ocs.oss.message.Message;
+import me.ocs.oss.mss.Message;
 
 /**
  * Android消息.

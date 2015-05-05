@@ -1,4 +1,4 @@
-package me.ocs.oss.message;
+package me.ocs.oss.mss;
 
 import org.apache.commons.lang3.StringUtils;
 

@@ -1,4 +1,4 @@
-package me.ocs.oss.message;
+package me.ocs.oss.mss;
 
 /**
  * 消息发送服务.

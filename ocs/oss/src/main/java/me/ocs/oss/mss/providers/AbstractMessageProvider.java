@@ -1,8 +1,8 @@
-package me.ocs.oss.message.providers;
+package me.ocs.oss.mss.providers;
 
-import me.ocs.oss.message.Message;
-import me.ocs.oss.message.MessageNotification;
-import me.ocs.oss.message.MessageProvider;
+import me.ocs.oss.mss.Message;
+import me.ocs.oss.mss.MessageNotification;
+import me.ocs.oss.mss.MessageProvider;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;

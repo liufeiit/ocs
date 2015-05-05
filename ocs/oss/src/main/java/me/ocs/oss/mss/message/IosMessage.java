@@ -1,9 +1,9 @@
-package me.ocs.oss.message.msg;
+package me.ocs.oss.mss.message;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import me.ocs.oss.message.Message;
+import me.ocs.oss.mss.Message;
 
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;

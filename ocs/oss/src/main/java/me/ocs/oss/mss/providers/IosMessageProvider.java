@@ -1,12 +1,13 @@
-package me.ocs.oss.message.providers;
+package me.ocs.oss.mss.providers;
 
-import me.ocs.oss.message.MessageNotification;
-import me.ocs.oss.message.msg.IosMessage;
-import me.ocs.oss.message.providers.apns.ApnsDelegateMonitor;
+import me.ocs.oss.mss.MessageNotification;
+import me.ocs.oss.mss.message.IosMessage;
+import me.ocs.oss.mss.providers.apns.ApnsDelegateMonitor;
 
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 
 import com.notnoop.apns.APNS;
 import com.notnoop.apns.ApnsDelegate;
@@ -110,13 +111,20 @@ public class IosMessageProvider extends AbstractMessageProvider<IosMessage> {
 			payloadBuilder.customFields(message.getCustomField());
 		}
 		String payload = payloadBuilder.build();
-		ApnsNotification apnsNotification = apnsService.push(message.getTarget(), payload);
-		notification.setAttachment(apnsNotification);
-		notification.setExpiresInSec(apnsNotification.getExpiry());
-		notification.setIdentifier(String.valueOf(apnsNotification.getIdentifier()));
-		notification.setMarshall(apnsNotification.marshall());
-		notification.setSuccess(true);
-		notification.setTarget(message.getTarget());
+		ApnsNotification apnsNotification;
+		try {
+			apnsNotification = apnsService.push(message.getTarget(), payload);
+			notification.setAttachment(apnsNotification);
+			notification.setExpiresInSec(apnsNotification.getExpiry());
+			notification.setIdentifier(String.valueOf(apnsNotification.getIdentifier()));
+			notification.setMarshall(apnsNotification.marshall());
+			notification.setSuccess(true);
+			notification.setTarget(message.getTarget());
+		} catch (Exception e) {
+			notification.setSuccess(false);
+			notification.setFailureMessage(ExceptionUtils.getStackTrace(e));
+			log.error("Send IosMessage Error.", e);
+		}
 	}
 
 	@Override

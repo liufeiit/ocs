@@ -1,4 +1,4 @@
-package me.ocs.oss.message.providers.apns;
+package me.ocs.oss.mss.providers.apns;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

@@ -1,4 +1,4 @@
-package me.ocs.oss.message.providers;
+package me.ocs.oss.mss.providers;
 
 import java.io.File;
 import java.util.List;
@@ -6,13 +6,14 @@ import java.util.List;
 import javax.mail.internet.MimeMessage;
 
 import me.ocs.oauth.security.SecurityService;
-import me.ocs.oss.message.MessageNotification;
-import me.ocs.oss.message.MessageProvider;
-import me.ocs.oss.message.msg.MailMessage;
+import me.ocs.oss.mss.MessageNotification;
+import me.ocs.oss.mss.MessageProvider;
+import me.ocs.oss.mss.message.MailMessage;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.InitializingBean;
@@ -29,7 +30,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 public class MailMessageProvider extends JavaMailSenderImpl implements MessageProvider<MailMessage>, InitializingBean {
 
 	private final Log log = LogFactory.getLog(getClass());
-	
+
 	private SecurityService securityService;
 
 	private String secretUsername;
@@ -70,11 +71,16 @@ public class MailMessageProvider extends JavaMailSenderImpl implements MessagePr
 				helper.addInline(inlineFile.getName(), resource);
 			}
 		}
-		send(message);
-		notification.setSuccess(true);
-		notification.setIdentifier(message.getMessageID());
-		log.debug("Send Mail " + message.getMessageID() + " Success!!!");
-		return;
+		try {
+			send(message);
+			notification.setSuccess(true);
+			notification.setIdentifier(message.getMessageID());
+			log.debug("Send Mail " + message.getMessageID() + " Success!!!");
+		} catch (Exception e) {
+			notification.setSuccess(false);
+			notification.setFailureMessage(ExceptionUtils.getStackTrace(e));
+			log.error("Send MailMessage Error.", e);
+		}
 	}
 
 	@Override
