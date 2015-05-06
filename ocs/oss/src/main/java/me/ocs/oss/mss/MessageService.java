@@ -13,7 +13,7 @@ public interface MessageService {
 	/**
 	 * 注册到一个消息提供商
 	 */
-	<M extends Message> void registProvider(MessageProvider<M> provider);
+	void registProvider(MessageProvider<Message> provider);
 
 	/**
 	 * 执行消息发送
