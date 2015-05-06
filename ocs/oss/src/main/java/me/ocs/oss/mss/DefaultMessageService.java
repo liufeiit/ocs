@@ -37,7 +37,7 @@ public class DefaultMessageService implements MessageService, InitializingBean {
 		if (messageProvider == null) {
 			throw new MessageException("No MessageProvider Named " + providerName + " for Message " + message.getClass().getSimpleName());
 		}
-		MessageNotification messageNotification = new MessageNotification(providerName);
+		final MessageNotification messageNotification = new MessageNotification(providerName);
 		try {
 			messageProvider.consume(message, messageNotification);
 		} catch (Exception e) {
@@ -54,7 +54,7 @@ public class DefaultMessageService implements MessageService, InitializingBean {
 			throw new IllegalStateException("MessageService Acquire MessageProvider.");
 		}
 		for (MessageProvider<Message> messageProvider : messageProviders) {
-			messageProvidersCacheMap.put(messageProvider.getName(), messageProvider);
+			registProvider(messageProvider);
 		}
 	}
 
