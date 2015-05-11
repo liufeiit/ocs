@@ -135,4 +135,36 @@ public class IosMessageProvider extends AbstractMessageProvider<IosMessage> {
 		}
 		apnsService.stop();
 	}
+	
+	public void setApnsService(ApnsService apnsService) {
+		this.apnsService = apnsService;
+	}
+	
+	public void setProduction(boolean production) {
+		this.production = production;
+	}
+	
+	public void setAutoAdjustCacheLength(boolean autoAdjustCacheLength) {
+		this.autoAdjustCacheLength = autoAdjustCacheLength;
+	}
+	
+	public void setReadTimeout(int readTimeout) {
+		this.readTimeout = readTimeout;
+	}
+	
+	public void setCertificate(String certificate) {
+		this.certificate = certificate;
+	}
+	
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	public void setReconnectPolicy(ReconnectPolicy reconnectPolicy) {
+		this.reconnectPolicy = reconnectPolicy;
+	}
+	
+	public void setApnsDelegate(ApnsDelegate apnsDelegate) {
+		this.apnsDelegate = apnsDelegate;
+	}
 }
