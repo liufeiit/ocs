@@ -31,7 +31,6 @@ public class DES {
 		System.out.println("e : " + e);
 		String d = decrypt(e, key);
 		System.out.println("d : " + d);
-		System.out.println(encrypt("fei.liu", key));
 	}
 
 	public static String encrypt(String content, byte[] key) throws GeneralSecurityException {
