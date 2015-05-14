@@ -12,58 +12,57 @@ import me.ocs.commons.crypto.password.PasswordEncoder;
  * @since 2015年5月14日 下午5:41:07
  */
 public class BCryptPasswordEncoder implements PasswordEncoder {
-    private Pattern BCRYPT_PATTERN = Pattern.compile("\\A\\$2a?\\$\\d\\d\\$[./0-9A-Za-z]{53}");
+	private Pattern BCRYPT_PATTERN = Pattern.compile("\\A\\$2a?\\$\\d\\d\\$[./0-9A-Za-z]{53}");
 
-    private final int strength;
+	private final int strength;
 
-    private final SecureRandom random;
+	private final SecureRandom random;
 
-    public BCryptPasswordEncoder() {
-        this(-1);
-    }
+	public BCryptPasswordEncoder() {
+		this(-1);
+	}
 
-    /**
-     * @param strength the log rounds to use
-     */
-    public BCryptPasswordEncoder(int strength) {
-        this(strength, null);
-    }
+	/**
+	 * @param strength
+	 *            the log rounds to use
+	 */
+	public BCryptPasswordEncoder(int strength) {
+		this(strength, null);
+	}
 
-    /**
-     * @param strength the log rounds to use
-     * @param random the secure random instance to use
-     *
-     */
-    public BCryptPasswordEncoder(int strength, SecureRandom random) {
-        this.strength = strength;
-        this.random = random;
-    }
+	/**
+	 * @param strength
+	 *            the log rounds to use
+	 * @param random
+	 *            the secure random instance to use
+	 * 
+	 */
+	public BCryptPasswordEncoder(int strength, SecureRandom random) {
+		this.strength = strength;
+		this.random = random;
+	}
 
-    public String encode(CharSequence rawPassword) {
-        String salt;
-        if (strength > 0) {
-            if (random != null) {
-                salt = BCrypt.gensalt(strength, random);
-            }
-            else {
-                salt = BCrypt.gensalt(strength);
-            }
-        }
-        else {
-            salt = BCrypt.gensalt();
-        }
-        return BCrypt.hashpw(rawPassword.toString(), salt);
-    }
+	public String encode(CharSequence rawPassword) {
+		String salt;
+		if (strength > 0) {
+			if (random != null) {
+				salt = BCrypt.gensalt(strength, random);
+			} else {
+				salt = BCrypt.gensalt(strength);
+			}
+		} else {
+			salt = BCrypt.gensalt();
+		}
+		return BCrypt.hashpw(rawPassword.toString(), salt);
+	}
 
-    public boolean matches(CharSequence rawPassword, String encodedPassword) {
-        if (encodedPassword == null || encodedPassword.length() == 0) {
-            throw new IllegalArgumentException("Encoded password cannot be null or empty");
-        }
-
-        if (!BCRYPT_PATTERN.matcher(encodedPassword).matches()) {
-            throw new IllegalArgumentException("Encoded password does not look like BCrypt");
-        }
-
-        return BCrypt.checkpw(rawPassword.toString(), encodedPassword);
-    }
+	public boolean matches(CharSequence rawPassword, String encodedPassword) {
+		if (encodedPassword == null || encodedPassword.length() == 0) {
+			return false;
+		}
+		if (!BCRYPT_PATTERN.matcher(encodedPassword).matches()) {
+			return false;
+		}
+		return BCrypt.checkpw(rawPassword.toString(), encodedPassword);
+	}
 }
