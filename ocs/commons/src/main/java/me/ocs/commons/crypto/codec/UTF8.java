@@ -11,7 +11,7 @@ import java.nio.charset.Charset;
  * @version 1.0.0
  * @since 2015年5月14日 下午5:44:28
  */
-public final class Utf8 {
+public final class UTF8 {
     private static final Charset CHARSET = Charset.forName("UTF-8");
 
     /**

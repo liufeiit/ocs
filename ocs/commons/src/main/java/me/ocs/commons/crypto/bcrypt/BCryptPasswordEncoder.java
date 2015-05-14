@@ -3,8 +3,7 @@ package me.ocs.commons.crypto.bcrypt;
 import java.security.SecureRandom;
 import java.util.regex.Pattern;
 
-import org.springframework.security.crypto.bcrypt.BCrypt;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import me.ocs.commons.crypto.password.PasswordEncoder;
 
 /**
  * @author 刘飞

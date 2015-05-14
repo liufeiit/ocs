@@ -1,7 +1,7 @@
 package me.ocs.commons.crypto.encrypt;
 
 import me.ocs.commons.crypto.codec.Hex;
-import me.ocs.commons.crypto.codec.Utf8;
+import me.ocs.commons.crypto.codec.UTF8;
 
 /**
  * @author 刘飞
@@ -18,11 +18,11 @@ final class HexEncodingTextEncryptor implements TextEncryptor {
     }
 
     public String encrypt(String text) {
-        return new String(Hex.encode(encryptor.encrypt(Utf8.encode(text))));
+        return new String(Hex.encode(encryptor.encrypt(UTF8.encode(text))));
     }
 
     public String decrypt(String encryptedText) {
-        return Utf8.decode(encryptor.decrypt(Hex.decode(encryptedText)));
+        return UTF8.decode(encryptor.decrypt(Hex.decode(encryptedText)));
     }
 
 }

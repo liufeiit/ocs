@@ -11,7 +11,7 @@ package me.ocs.commons.crypto.codec;
  * @version 1.0.0
  * @since 2015年5月14日 下午5:44:01
  */
-public final class Base64 {
+public final class BASE64 {
 
     /** No options specified. Value is zero. */
     public final static int NO_OPTIONS = 0;
@@ -377,7 +377,7 @@ public final class Base64 {
      * @param len Length of data to convert
      * @param options Specified options
      * @return The Base64-encoded data as a String
-     * @see Base64#DO_BREAK_LINES
+     * @see BASE64#DO_BREAK_LINES
      * @throws java.io.IOException if there is an error
      * @throws NullPointerException if source array is null
      * @throws IllegalArgumentException if source array, offset, or length are invalid
