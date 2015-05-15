@@ -27,13 +27,19 @@
 	</properties>
 
 	<modules>
-		<module>commons</module>
+		<module>comm</module>
 		<module>oss</module>
 		<module>oauth</module>
 		<module>apns</module>
 	</modules>
 
 	<dependencies>
+		
+		<dependency>
+        		<groupId>org.springframework.session</groupId>
+        		<artifactId>spring-session</artifactId>
+        		<version>1.0.1.RELEASE</version>
+    		</dependency>
 
 		<dependency>
 			<groupId>javax.mail</groupId>

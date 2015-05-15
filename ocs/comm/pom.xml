@@ -6,8 +6,8 @@
 		<artifactId>ocs</artifactId>
 		<version>1.0.0-RELEASE</version>
 	</parent>
-	<groupId>me.ocs.commons</groupId>
-	<artifactId>ocs-commons</artifactId>
+	<groupId>me.ocs.comm</groupId>
+	<artifactId>ocs-comm</artifactId>
 	<name>OCS Commons</name>
 	<description>Open Commons Service Commons</description>
 	<properties>

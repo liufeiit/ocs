@@ -14,41 +14,22 @@
       <attribute value="jar:file:/Users/yp/m2/repo/javax/validation/validation-api/1.0.0.GA/validation-api-1.0.0.GA-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
+  <classpathentry kind="var" path="M2_REPO/javax/servlet/jsp/jsp-api/2.1/jsp-api-2.1.jar" sourcepath="M2_REPO/javax/servlet/jsp/jsp-api/2.1/jsp-api-2.1-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/javax/servlet/jsp/jstl/jstl-api/1.2/jstl-api-1.2.jar" sourcepath="M2_REPO/javax/servlet/jsp/jstl/jstl-api/1.2/jstl-api-1.2-sources.jar">
     <attributes>
       <attribute value="jar:file:/Users/yp/m2/repo/javax/servlet/jsp/jstl/jstl-api/1.2/jstl-api-1.2-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/javax/servlet/jsp/jsp-api/2.1/jsp-api-2.1.jar" sourcepath="M2_REPO/javax/servlet/jsp/jsp-api/2.1/jsp-api-2.1-sources.jar"/>
   <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
-  <classpathentry kind="src" path="/ocs-apns"/>
-  <classpathentry kind="var" path="M2_REPO/commons-httpclient/commons-httpclient/3.1/commons-httpclient-3.1.jar" sourcepath="M2_REPO/commons-httpclient/commons-httpclient/3.1/commons-httpclient-3.1-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar" sourcepath="M2_REPO/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/commons-codec/commons-codec/1.10/commons-codec-1.10.jar" sourcepath="M2_REPO/commons-codec/commons-codec/1.10/commons-codec-1.10-sources.jar">
-    <attributes>
-      <attribute value="jar:file:/Users/yp/m2/repo/commons-codec/commons-codec/1.10/commons-codec-1.10-javadoc.jar!/" name="javadoc_location"/>
-    </attributes>
-  </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/org/slf4j/slf4j-api/1.6.4/slf4j-api-1.6.4.jar" sourcepath="M2_REPO/org/slf4j/slf4j-api/1.6.4/slf4j-api-1.6.4-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/com/fasterxml/jackson/core/jackson-databind/2.1.4/jackson-databind-2.1.4.jar" sourcepath="M2_REPO/com/fasterxml/jackson/core/jackson-databind/2.1.4/jackson-databind-2.1.4-sources.jar">
-    <attributes>
-      <attribute value="jar:file:/Users/yp/m2/repo/com/fasterxml/jackson/core/jackson-databind/2.1.4/jackson-databind-2.1.4-javadoc.jar!/" name="javadoc_location"/>
-    </attributes>
-  </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/com/fasterxml/jackson/core/jackson-annotations/2.1.4/jackson-annotations-2.1.4.jar" sourcepath="M2_REPO/com/fasterxml/jackson/core/jackson-annotations/2.1.4/jackson-annotations-2.1.4-sources.jar">
-    <attributes>
-      <attribute value="jar:file:/Users/yp/m2/repo/com/fasterxml/jackson/core/jackson-annotations/2.1.4/jackson-annotations-2.1.4-javadoc.jar!/" name="javadoc_location"/>
-    </attributes>
-  </classpathentry>
-  <classpathentry kind="var" path="M2_REPO/com/fasterxml/jackson/core/jackson-core/2.1.4/jackson-core-2.1.4.jar" sourcepath="M2_REPO/com/fasterxml/jackson/core/jackson-core/2.1.4/jackson-core-2.1.4-sources.jar">
-    <attributes>
-      <attribute value="jar:file:/Users/yp/m2/repo/com/fasterxml/jackson/core/jackson-core/2.1.4/jackson-core-2.1.4-javadoc.jar!/" name="javadoc_location"/>
-    </attributes>
-  </classpathentry>
   <classpathentry kind="var" path="M2_REPO/org/springframework/session/spring-session/1.0.1.RELEASE/spring-session-1.0.1.RELEASE.jar" sourcepath="M2_REPO/org/springframework/session/spring-session/1.0.1.RELEASE/spring-session-1.0.1.RELEASE-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/apache/commons/commons-compress/1.9/commons-compress-1.9.jar" sourcepath="M2_REPO/org/apache/commons/commons-compress/1.9/commons-compress-1.9-sources.jar">
     <attributes>
       <attribute value="jar:file:/Users/yp/m2/repo/org/apache/commons/commons-compress/1.9/commons-compress-1.9-javadoc.jar!/" name="javadoc_location"/>
+    </attributes>
+  </classpathentry>
+  <classpathentry kind="var" path="M2_REPO/commons-codec/commons-codec/1.10/commons-codec-1.10.jar" sourcepath="M2_REPO/commons-codec/commons-codec/1.10/commons-codec-1.10-sources.jar">
+    <attributes>
+      <attribute value="jar:file:/Users/yp/m2/repo/commons-codec/commons-codec/1.10/commons-codec-1.10-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
   <classpathentry kind="var" path="M2_REPO/commons-beanutils/commons-beanutils/1.9.2/commons-beanutils-1.9.2.jar" sourcepath="M2_REPO/commons-beanutils/commons-beanutils/1.9.2/commons-beanutils-1.9.2-sources.jar">
@@ -56,6 +37,7 @@
       <attribute value="jar:file:/Users/yp/m2/repo/commons-beanutils/commons-beanutils/1.9.2/commons-beanutils-1.9.2-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
+  <classpathentry kind="var" path="M2_REPO/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar" sourcepath="M2_REPO/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar" sourcepath="M2_REPO/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1-sources.jar">
     <attributes>
       <attribute value="jar:file:/Users/yp/m2/repo/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1-javadoc.jar!/" name="javadoc_location"/>
@@ -426,6 +408,7 @@
   </classpathentry>
   <classpathentry kind="var" path="M2_REPO/org/hibernate/java-persistence/jpa-api/2.0-cr-1/jpa-api-2.0-cr-1.jar"/>
   <classpathentry kind="var" path="M2_REPO/mysql/mysql-connector-java/5.1.25/mysql-connector-java-5.1.25.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/slf4j/slf4j-api/1.6.4/slf4j-api-1.6.4.jar" sourcepath="M2_REPO/org/slf4j/slf4j-api/1.6.4/slf4j-api-1.6.4-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/slf4j/jcl-over-slf4j/1.6.4/jcl-over-slf4j-1.6.4.jar" sourcepath="M2_REPO/org/slf4j/jcl-over-slf4j/1.6.4/jcl-over-slf4j-1.6.4-sources.jar">
     <attributes>
       <attribute value="jar:file:/Users/yp/m2/repo/org/slf4j/jcl-over-slf4j/1.6.4/jcl-over-slf4j-1.6.4-javadoc.jar!/" name="javadoc_location"/>
@@ -437,6 +420,7 @@
     </attributes>
   </classpathentry>
   <classpathentry kind="var" path="M2_REPO/log4j/log4j/1.2.13/log4j-1.2.13.jar" sourcepath="M2_REPO/log4j/log4j/1.2.13/log4j-1.2.13-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/apache/tomcat/tomcat-servlet-api/7.0.30/tomcat-servlet-api-7.0.30.jar" sourcepath="M2_REPO/org/apache/tomcat/tomcat-servlet-api/7.0.30/tomcat-servlet-api-7.0.30-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/glassfish/web/jstl-impl/1.2/jstl-impl-1.2.jar" sourcepath="M2_REPO/org/glassfish/web/jstl-impl/1.2/jstl-impl-1.2-sources.jar">
     <attributes>
       <attribute value="jar:file:/Users/yp/m2/repo/org/glassfish/web/jstl-impl/1.2/jstl-impl-1.2-javadoc.jar!/" name="javadoc_location"/>
@@ -468,7 +452,4 @@
       <attribute value="jar:file:/Users/yp/m2/repo/org/json/org.json/chargebee-1.0/org.json-chargebee-1.0-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
-  <classpathentry kind="src" path="/ocs-comm"/>
-  <classpathentry kind="src" path="/ocs-oauth"/>
-  <classpathentry kind="var" path="M2_REPO/org/apache/tomcat/tomcat-servlet-api/7.0.30/tomcat-servlet-api-7.0.30.jar" sourcepath="M2_REPO/org/apache/tomcat/tomcat-servlet-api/7.0.30/tomcat-servlet-api-7.0.30-sources.jar"/>
 </classpath>
