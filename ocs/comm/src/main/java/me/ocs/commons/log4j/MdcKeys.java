@@ -13,6 +13,8 @@ public interface MdcKeys {
 	String REMOTE_ADDR = "remoteAddr";
 	String REQUEST_URI_WITH_QUERY_STRING = "requestURIWithQueryString";
 	String MESSAGE = "message";
+	String SESSION_ID = "sessionId";
+	
 	String LOGIN_USER_NICK = "loginUserNick";
 	String ANONYMOUS = "Anonymous";
 }

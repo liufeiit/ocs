@@ -40,6 +40,7 @@ public class Log4jMDCLoggingFilter extends AbstractRequestLoggingFilter {
 		MDC.put(REMOTE_HOST, request.getRemoteHost());
 		MDC.put(USER_AGENT, request.getHeader(USER_AGENT));
 		MDC.put(REFERRER, request.getHeader(REFERER));
+		MDC.put(SESSION_ID, request.getRequestedSessionId());
 		MDC.put(LOGIN_USER_NICK, getLoginUserNick(request));
 	}
 	
