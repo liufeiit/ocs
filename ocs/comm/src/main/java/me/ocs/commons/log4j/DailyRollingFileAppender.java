@@ -14,6 +14,8 @@ public class DailyRollingFileAppender extends org.apache.log4j.DailyRollingFileA
 	public synchronized void setFile(String fileName, boolean append, boolean bufferedIO, int bufferSize) throws IOException {
 		File logfile = new File(fileName);
 		logfile.getParentFile().mkdirs();
-		super.setFile(fileName, append, bufferedIO, bufferSize);
+		try {
+			super.setFile(fileName, append, bufferedIO, bufferSize);
+		} catch (Throwable ioe) {}
 	}
 }
