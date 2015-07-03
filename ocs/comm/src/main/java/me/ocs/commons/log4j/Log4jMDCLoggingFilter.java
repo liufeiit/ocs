@@ -23,8 +23,8 @@ public class Log4jMDCLoggingFilter extends AbstractRequestLoggingFilter {
 	
 	protected final Logger log4jLogger = Logger.getLogger(getClass());
 
-	private static final String REFERER = "Referer";
-	private static final String USER_AGENT = "User-Agent";
+	private static final String H_REFERER = "Referer";
+	private static final String H_USER_AGENT = "User-Agent";
 
 	@Override
 	protected void beforeRequest(HttpServletRequest request, String message) {
@@ -36,11 +36,11 @@ public class Log4jMDCLoggingFilter extends AbstractRequestLoggingFilter {
 		String queryString = request.getQueryString();
 		sb.append(StringUtils.defaultString(queryString, StringUtils.EMPTY));
 		MDC.put(REQUEST_URI_WITH_QUERY_STRING, sb);
-		MDC.put(REMOTE_ADDR, request.getRemoteAddr());
-		MDC.put(REMOTE_HOST, request.getRemoteHost());
-		MDC.put(USER_AGENT, request.getHeader(USER_AGENT));
-		MDC.put(REFERRER, request.getHeader(REFERER));
-		MDC.put(SESSION_ID, request.getRequestedSessionId());
+		MDC.put(REMOTE_ADDR, StringUtils.defaultIfBlank(request.getRemoteAddr(), StringUtils.EMPTY));
+		MDC.put(REMOTE_HOST, StringUtils.defaultIfBlank(request.getRemoteHost(), StringUtils.EMPTY));
+		MDC.put(USER_AGENT, StringUtils.defaultIfBlank(request.getHeader(H_USER_AGENT), StringUtils.EMPTY));
+		MDC.put(REFERRER, StringUtils.defaultIfBlank(request.getHeader(H_REFERER), StringUtils.EMPTY));
+		MDC.put(SESSION_ID, StringUtils.defaultIfBlank(request.getRequestedSessionId(), StringUtils.EMPTY));
 		MDC.put(LOGIN_USER_NICK, getLoginUserNick(request));
 	}
 	
