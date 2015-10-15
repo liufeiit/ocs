@@ -27,6 +27,8 @@ public class RedisAuthenticationProvider implements AuthenticationProvider {
 
 	public static final String REDIS_AUTHENTICATION_SEQUENCETYPE = "system.provider.ras";
 
+    public static final String REDIS_AUTHENTICATION_TOKEN_SEQUENCETYPE = "system.provider.tk.ras";
+
 	private static final int DEFAULT_TOKEN_EXPIRES_IN_SEC = 60 * 60 * 24 * 30;
 
 	protected final Log log = LogFactory.getLog(getClass());
@@ -62,10 +64,11 @@ public class RedisAuthenticationProvider implements AuthenticationProvider {
 		return redisTemplate.execute(new RedisCallback<LoginResponse>() {
 			@Override
 			public LoginResponse doInRedis(Jedis jedis) throws Throwable {
-				String access_token = securityService.encrypt(appId + DOT + secretId + DOT + open_id);
-				access_token = StringUtils.replace(access_token, "+", "S");
-				access_token = StringUtils.replace(access_token, "/", "D");
-				access_token = StringUtils.replace(access_token, "=", "E");
+//				String access_token = securityService.encrypt(appId + DOT + secretId + DOT + open_id);
+//				access_token = StringUtils.replace(access_token, "+", "S");
+//				access_token = StringUtils.replace(access_token, "/", "D");
+//				access_token = StringUtils.replace(access_token, "=", "E");
+			    String access_token = sequenceService.nextValueAsStringWithCreate(REDIS_AUTHENTICATION_TOKEN_SEQUENCETYPE, 25, 1L);
 				jedis.setex(open_id, tokenExpiresInSec, access_token);
 				return new LoginResponse(appId, open_id, access_token, tokenExpiresInSec);
 			}
